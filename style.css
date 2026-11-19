@@ -72,8 +72,9 @@ svg.i { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round
 .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 64px; }
 .brand { font-family: var(--font-head); font-weight: 700; font-size: 1.3rem; color: var(--ink); text-decoration: none; white-space: nowrap; }
 .brand span { color: var(--brand); }
-.nav nav { display: flex; align-items: center; gap: 26px; }
-.nav nav a:not(.btn) { color: var(--ink); text-decoration: none; font-weight: 500; font-size: .95rem; white-space: nowrap; }
+.nav nav { display: flex; align-items: center; gap: 14px; }
+.site-header .container, .sponsor-bar .container { width: min(1200px, 100% - 32px); }
+.nav nav a:not(.btn) { color: var(--ink); text-decoration: none; font-weight: 500; font-size: .9rem; white-space: nowrap; }
 .nav nav a:not(.btn):hover { color: var(--brand); }
 .nav-toggle { display: none; background: none; border: 0; padding: 8px; color: var(--ink); cursor: pointer; }
 .nav-toggle svg { width: 26px; height: 26px; }
@@ -224,19 +225,6 @@ svg.i { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round
 .photo-pair figcaption { padding: 24px 14px 10px; font-size: .85rem; }
 
 /* ---------- Organizers ---------- */
-.org-strip { background: #fff; border-bottom: 1px solid var(--line); padding: 24px 0; }
-.org-inner { display: grid; grid-template-columns: auto auto 1fr; align-items: start; gap: 18px 64px; }
-.org-group p { margin: 0; line-height: 1.6; }
-.org-strip .org-label { margin-bottom: 4px; font-size: .76rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-.org-group a { color: var(--brand); font-weight: 600; text-decoration: none; white-space: nowrap; }
-.org-group a:hover { text-decoration: underline; }
-.org-group .aff { color: var(--muted); font-size: .92rem; }
-.org-logos { justify-self: end; align-self: start; }
-.org-logos .org-label { margin: 0; line-height: 1.6; }
-.logo-row { display: flex; align-items: center; gap: 28px; margin-top: 8px; }
-.logo-row a { flex: none; }
-.logo-row img { display: block; height: 44px; width: auto; }
-@media (max-width: 1180px) { .org-inner { grid-template-columns: auto 1fr; gap: 18px 48px; } .org-logos { grid-column: 1 / -1; justify-self: start; } .logo-row { gap: 24px; } .logo-row img { height: 38px; } }
 
 /* ---------- Footer ---------- */
 .site-footer { padding: 40px 0 28px; background: var(--hero-1); color: #c8cef5; font-size: .95rem; }
@@ -256,6 +244,35 @@ svg.i { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round
 .timeline time { display: block; margin-bottom: 4px; font-family: var(--font-head); font-size: 1.3rem; font-weight: 700; color: var(--ink); }
 .deadline { display: inline-block; margin: 16px 0 0; padding: 6px 14px; border-radius: 999px; background: #fff4dc; color: #92400e; font-weight: 700; font-size: .95rem; }
 
+/* ---------- Sponsors bar (very top of every page) ---------- */
+.sponsor-bar { background: #fff; border-bottom: 1px solid var(--line); }
+.sponsor-inner { display: flex; align-items: center; gap: 26px; padding: 9px 0; }
+.sponsor-label { font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.sponsor-inner a { flex: none; }
+.sponsor-inner img { display: block; height: 38px; width: auto; }
+
+/* ---------- Organizers, inside the hero right after the date ---------- */
+.hero-org { display: grid; gap: 6px; margin: -6px 0 26px; font-size: 1rem; color: #e1e5ff; }
+.hero-org p { margin: 0; }
+.hero-org .label { margin-right: 10px; font-size: .76rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #fcd34d; }
+.hero-org a { color: #fff; font-weight: 600; white-space: nowrap; text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,.35); text-underline-offset: 3px; }
+.hero-org a:hover { text-decoration-color: #fff; }
+.hero-org .aff { color: #c3c9ef; }
+
+/* ---------- One page per menu tab ---------- */
+body { min-height: 100vh; display: flex; flex-direction: column; }
+main { flex: 1 0 auto; display: flex; flex-direction: column; }
+main > section:last-child { flex: 1 0 auto; }
+.hero-home { min-height: calc(100vh - 122px); display: flex; align-items: center; }
+.hero-home > .container { width: min(1120px, 100% - 32px); }
+.page-title { font-size: clamp(1.8rem, 2.5vw + 1rem, 2.6rem); letter-spacing: -.01em; }
+.nav nav a[aria-current="page"]:not(.btn) { color: var(--brand); font-weight: 600; text-decoration: underline;
+  text-decoration-thickness: 2px; text-underline-offset: 8px; }
+.support-page .support { margin-top: 0; }
+.hotels { margin: 10px 0 0; padding-left: 1.2em; color: var(--muted); }
+.hotels li { margin: 4px 0; }
+
 /* Language switch */
 .nav a.lang { padding: 4px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--brand); text-decoration: none; font-size: .85rem; font-weight: 700; white-space: nowrap; }
 .nav a.lang:hover { background: var(--brand-soft); }
@@ -264,8 +281,8 @@ svg.i { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round
 
 .mobile-cta { display: none; }
 
-/* ---------- Menu collapses earlier (5 items) ---------- */
-@media (max-width: 1140px) {
+/* ---------- Tablets and phones: menu behind the ☰ button ---------- */
+@media (max-width: 1200px) {  /* menu folds into ☰ below this width */
   .nav-toggle { display: block; }
   .nav nav {
     display: none; position: absolute; top: 64px; left: 0; right: 0;
@@ -283,9 +300,9 @@ svg.i { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round
 
 /* ---------- Tablet & phone ---------- */
 @media (max-width: 860px) {
-  .org-strip .org-inner { grid-template-columns: 1fr; gap: 16px; }
   section { padding: 64px 0; }
   .hero { padding: 64px 0 72px; background-position: 0 0, 70% 40%, 0 0; }
+  .hero-org .label { display: block; margin: 0 0 2px; }
   .about, .venue, .register-band { grid-template-columns: 1fr; gap: 32px; }
   .register-band { padding: 36px 24px; }
   .support { padding: 32px 22px; }
@@ -300,6 +317,7 @@ svg.i { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round
     justify-content: center; box-shadow: 0 12px 30px -10px rgba(21,26,48,.5);
   }
   body { padding-bottom: 84px; }
+  body.home { padding-bottom: 0; }
 }
 @media (max-width: 560px) {
   .keynote { grid-template-columns: 1fr; padding: 26px 22px; text-align: center; }
@@ -308,6 +326,9 @@ svg.i { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round
   .keynote .aff, .keynote .talk { text-align: center; }
 }
 @media (max-width: 420px) {
+  .sponsor-inner { gap: 16px; }
+  .sponsor-inner img { height: 28px; }
+  .sponsor-label { font-size: .68rem; }
   .nav { gap: 10px; }
   .brand { font-size: 1.08rem; }
   .nav a.lang { padding: 3px 9px; font-size: .8rem; }
