@@ -154,8 +154,12 @@ svg.i { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round
 .speakers { grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); }
 .speaker { text-align: center; padding: 30px 22px; }
 .speaker h3 { font-size: 1.15rem; margin-bottom: 2px; }
-.speaker h3 a, .keynote h3 a { color: var(--ink); text-decoration: none; }
-.speaker h3 a:hover, .keynote h3 a:hover { color: var(--brand); }
+/* Speaker names link to their web pages: blue, underlined, with a small ↗ so readers see they can click */
+.speaker h3 a, .keynote h3 a { color: var(--brand); text-decoration: underline; text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px; text-decoration-color: rgba(47, 63, 181, .35); transition: text-decoration-color .15s; }
+.speaker h3 a::after, .keynote h3 a::after { content: "\2197"; display: inline-block; margin-left: .22em;
+  font-family: var(--font-body); font-size: .68em; font-weight: 600; vertical-align: .32em; }
+.speaker h3 a:hover, .speaker h3 a:focus-visible, .keynote h3 a:hover, .keynote h3 a:focus-visible { text-decoration-color: currentColor; }
 .speaker .aff { font-size: .92rem; }
 .speaker .talk, .keynote .talk { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--line); font-size: .9rem; font-style: italic; color: var(--ink); }
 
@@ -220,15 +224,19 @@ svg.i { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round
 .photo-pair figcaption { padding: 24px 14px 10px; font-size: .85rem; }
 
 /* ---------- Organizers ---------- */
-.organizers { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); gap: 16px; }
-.organizers li { padding: 18px 22px; background: #fff; border: 1px solid var(--line); border-radius: 12px; }
-.organizers strong { display: block; }
-.organizers span, .organizers a { display: block; color: var(--muted); font-size: .92rem; }
-.organizers a { color: var(--brand); }
-.sponsors { display: flex; flex-wrap: wrap; gap: 16px; }
-.sponsors .logo { margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 20px 28px; border-radius: 12px; background: #fff; border: 1px solid var(--line); }
-.sponsors img { height: 52px; width: auto; }
-.sponsors figcaption { font-size: .82rem; color: var(--muted); text-align: center; }
+.org-strip { background: #fff; border-bottom: 1px solid var(--line); padding: 24px 0; }
+.org-inner { display: grid; grid-template-columns: auto auto 1fr; align-items: start; gap: 18px 64px; }
+.org-group p { margin: 0; line-height: 1.6; }
+.org-strip .org-label { margin-bottom: 4px; font-size: .76rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.org-group a { color: var(--brand); font-weight: 600; text-decoration: none; white-space: nowrap; }
+.org-group a:hover { text-decoration: underline; }
+.org-group .aff { color: var(--muted); font-size: .92rem; }
+.org-logos { justify-self: end; align-self: start; }
+.org-logos .org-label { margin: 0; line-height: 1.6; }
+.logo-row { display: flex; align-items: center; gap: 28px; margin-top: 8px; }
+.logo-row a { flex: none; }
+.logo-row img { display: block; height: 44px; width: auto; }
+@media (max-width: 1180px) { .org-inner { grid-template-columns: auto 1fr; gap: 18px 48px; } .org-logos { grid-column: 1 / -1; justify-self: start; } .logo-row { gap: 24px; } .logo-row img { height: 38px; } }
 
 /* ---------- Footer ---------- */
 .site-footer { padding: 40px 0 28px; background: var(--hero-1); color: #c8cef5; font-size: .95rem; }
@@ -275,6 +283,7 @@ svg.i { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round
 
 /* ---------- Tablet & phone ---------- */
 @media (max-width: 860px) {
+  .org-strip .org-inner { grid-template-columns: 1fr; gap: 16px; }
   section { padding: 64px 0; }
   .hero { padding: 64px 0 72px; background-position: 0 0, 70% 40%, 0 0; }
   .about, .venue, .register-band { grid-template-columns: 1fr; gap: 32px; }
