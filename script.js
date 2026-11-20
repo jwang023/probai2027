@@ -35,3 +35,22 @@ if (cd) {
   const timer = setInterval(tick, 1000);
   tick();
 }
+
+// Poster submission form: shows the Google Form given in data-form="..." inside the page
+document.querySelectorAll(".form-embed[data-form]").forEach((box) => {
+  const link = box.dataset.form.trim();
+  if (!/^https:\/\/docs\.google\.com\/forms\//.test(link)) return;   // no link yet: keep the "coming soon" note
+  const url = new URL(link);
+  url.searchParams.set("embedded", "true");
+  const frame = document.createElement("iframe");
+  frame.src = url.toString();
+  frame.title = box.dataset.title || "Form";
+  frame.loading = "lazy";
+  const open = document.createElement("a");
+  open.className = "form-open";
+  open.href = link;
+  open.target = "_blank";
+  open.rel = "noopener";
+  open.textContent = (box.dataset.open || "Open the form in a new tab") + " \u2197";
+  box.replaceChildren(frame, open);
+});
